@@ -56,7 +56,7 @@ body {
   left: 0;
   height: 2px;
   width: 0%;
-  background: var(--ink);
+  background: #2d5fa6;
   z-index: 400;
   pointer-events: none;
   transition: width 0.08s linear;
@@ -141,7 +141,7 @@ body {
   left: 10px;
   right: 10px;
   height: 2px;
-  background: var(--ink);
+  background: #2d5fa6;
   border-radius: 1px;
   transform: scaleX(0);
   transition: transform 0.25s var(--ease);
@@ -430,7 +430,7 @@ html.dark-mode .theme-toggle .lamp-moon { opacity: 1; }
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--ink);
-  border-left: 3px solid var(--ink);
+  border-left: 3px solid #2d5fa6;
   padding-left: 16px;
   margin-bottom: 56px;
   line-height: 1.1;
