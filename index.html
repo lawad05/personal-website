@@ -32,12 +32,38 @@
 
       <div class="nav-actions">
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg class="lamp-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" overflow="visible">
+            <!-- Lamp shade -->
+            <path d="M8 4H16L20 13H4L8 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <!-- Stem -->
+            <line x1="12" y1="13" x2="12" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Base -->
+            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Pull cord -->
+            <line class="lamp-cord" x1="14.5" y1="13" x2="14.5" y2="17.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <!-- Bulb -->
+            <circle class="lamp-bulb" cx="12" cy="9" r="1.8" fill="currentColor" fill-opacity="0"/>
+            <!-- Rays -->
+            <g class="lamp-rays">
+              <line x1="5" y1="14" x2="3" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <line x1="19" y1="14" x2="21" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+              <line x1="12" y1="14" x2="12" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </g>
+            <!-- Sun + Moon orbit — rotates 180° around lamp centre (12,9) -->
+            <g class="lamp-orbit">
+              <!-- Sun: upper-right (20,2) in light mode -->
+              <g class="lamp-sun">
+                <circle cx="20" cy="2" r="1.8" fill="currentColor"/>
+                <line x1="20" y1="-0.4" x2="20" y2="-1.2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                <line x1="20" y1="4.4" x2="20" y2="5.2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                <line x1="17.6" y1="2" x2="16.8" y2="2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+                <line x1="22.4" y1="2" x2="23.2" y2="2" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+              </g>
+              <!-- Moon: lower-left (4,16) — arcs to upper-right when orbit rotates 180° -->
+              <g class="lamp-moon">
+                <path d="M2.9 14.3 A2 2 0 1 0 2.9 17.7 A1.6 1.6 0 0 1 2.9 14.3 Z" fill="currentColor"/>
+              </g>
+            </g>
           </svg>
         </button>
         <button class="cmd-trigger" id="cmd-trigger" aria-label="Open command palette">
@@ -63,7 +89,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Lucas Awad</p>
       <h1 class="hero-title">Welcome to<br>my website.</h1>
-      <p class="hero-subtitle">CS &amp; Economics @ UChicago &middot; Incoming IB Analyst @ DrakeStar &middot; Builder at the intersection of finance and tech</p>
+      <p class="hero-subtitle">CS &amp; Economics @ UChicago &middot; Incoming IB Analyst @ DrakeStar &middot; Consider this my live, <em>enhanced</em> resume!</p>
       <div class="cta-group">
         <a href="#resume" class="cta-btn">View Resume &darr;</a>
         <a href="https://github.com/lawad05" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn--outline">GitHub &rarr;</a>
@@ -290,6 +316,133 @@
 
         <div class="resume-row">
           <div class="resume-row-header">
+            <div class="resume-date">Sept 2024 &ndash; Present</div>
+            <div class="resume-main">
+              <div class="resume-org">UChicago M&amp;A Group</div>
+              <div class="resume-role">Founding Member</div>
+            </div>
+            <div class="resume-meta">
+              <span class="resume-location">Chicago, IL</span>
+              <button class="toggle-btn" aria-label="Expand details">
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="resume-details">
+            <div class="details-inner">
+              <ul>
+                <li>Joined as founding member</li>
+                <li>Weekly market discussions</li>
+                <li>Live modeling exercises</li>
+                <li>Technical M&amp;A workshops</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-row">
+          <div class="resume-row-header">
+            <div class="resume-date">Sept 2024 &ndash; Present</div>
+            <div class="resume-main">
+              <div class="resume-org">AI in Finance Program</div>
+              <div class="resume-role">Traders Learning Tech Cohort</div>
+            </div>
+            <div class="resume-meta">
+              <span class="resume-location">Chicago, IL</span>
+              <button class="toggle-btn" aria-label="Expand details">
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="resume-details">
+            <div class="details-inner">
+              <ul>
+                <li>Learning how to utilize and leverage AI in finance for the future</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-row">
+          <div class="resume-row-header">
+            <div class="resume-date">Sept 2024 &ndash; Present</div>
+            <div class="resume-main">
+              <div class="resume-org">Barbell Club</div>
+              <div class="resume-role">Member</div>
+            </div>
+            <div class="resume-meta">
+              <span class="resume-location">Chicago, IL</span>
+              <button class="toggle-btn" aria-label="Expand details">
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="resume-details">
+            <div class="details-inner">
+              <ul>
+                <li>Member since September 2024</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-row">
+          <div class="resume-row-header">
+            <div class="resume-date">Sept 2024 &ndash; Present</div>
+            <div class="resume-main">
+              <div class="resume-org">UChicago Barbell Club</div>
+              <div class="resume-role">Member</div>
+            </div>
+            <div class="resume-meta">
+              <span class="resume-location">Chicago, IL</span>
+              <button class="toggle-btn" aria-label="Expand details">
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="resume-details">
+            <div class="details-inner">
+              <ul>
+                <li>Powerlifting / Weightlifting Club</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-row">
+          <div class="resume-row-header">
+            <div class="resume-date">2023 &ndash; Present</div>
+            <div class="resume-main">
+              <div class="resume-org">Personal Portfolio</div>
+              <div class="resume-role">Self-Managed Public Equities</div>
+            </div>
+            <div class="resume-meta">
+              <button class="toggle-btn" aria-label="Expand details">
+                <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="resume-details">
+            <div class="details-inner">
+              <ul>
+                <li>Self-managed public equities portfolio generating approximately +15% over the past year through discretionary investing across technology and macro-driven themes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-row">
+          <div class="resume-row-header">
             <div class="resume-date">Sept 2023 &ndash; May 2024</div>
             <div class="resume-main">
               <div class="resume-org">Macro Investing Group</div>
@@ -401,18 +554,149 @@
         <div class="card fade-up">
           <h3 class="card-title">Interests</h3>
           <div class="interest-list">
-            <div class="interest-item">DJing</div>
-            <div class="interest-item">
-              Traveling
-              <span class="interest-note">Dubai &middot; Lake Como &middot; Paris</span>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>DJing</span>
+                <button class="toggle-btn" aria-label="Expand DJing">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  House music &middot; Psi Upsilon Resident DJ &middot; Play at private parties &middot; WHPK UChicago Radio &middot; Summer Breeze
+                  <img src="DSCF8784.jpeg" alt="Lucas DJing at a party" class="interest-photo" />
+                </div>
+              </div>
             </div>
-            <div class="interest-item">Weightlifting / Powerlifting</div>
-            <div class="interest-item">Running</div>
-            <div class="interest-item">Windsurfing</div>
-            <div class="interest-item">Swimming</div>
-            <div class="interest-item">Cooking</div>
-            <div class="interest-item">Rubik&rsquo;s Cubing</div>
-            <div class="interest-item">Reading</div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Traveling</span>
+                <button class="toggle-btn" aria-label="Expand Traveling">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Dubai &middot; London &middot; Paris &middot; Los Angeles &middot; New York
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Weightlifting / Powerlifting</span>
+                <button class="toggle-btn" aria-label="Expand Weightlifting">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Used to powerlift professionally &mdash; still train and run very regularly
+                  <img src="IMG_2291.jpeg" alt="Lucas competing at Desert Barbell powerlifting meet" class="interest-photo" />
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Running</span>
+                <button class="toggle-btn" aria-label="Expand Running">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Run for pleasure, not a good runner &mdash; trying to get a sub 20 minute 5k
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Windsurfing</span>
+                <button class="toggle-btn" aria-label="Expand Windsurfing">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Spend summers in France in my hometown windsurfing whenever the wind permits
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Swimming</span>
+                <button class="toggle-btn" aria-label="Expand Swimming">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Varsity swim team &middot; Gold medalist in 50m freestyle at international school swim conference
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Cooking</span>
+                <button class="toggle-btn" aria-label="Expand Cooking">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Honey ginger soy sauce glazed salmon &middot; Good steaks &middot; Good oysters
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Rubik&rsquo;s Cubing</span>
+                <button class="toggle-btn" aria-label="Expand Rubik's Cubing">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Nowhere near a good cuber but love to cube in my free time
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Reading</span>
+                <button class="toggle-btn" aria-label="Expand Reading">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Love science fiction &mdash; favorite trilogy is The Three-Body Problem
+                </div>
+              </div>
+            </div>
+
+            <div class="interest-item interest-expandable">
+              <div class="interest-header">
+                <span>Biohacking</span>
+                <button class="toggle-btn" aria-label="Expand Biohacking">
+                  <svg class="chevron-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 5L7 9.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="interest-details">
+                <div class="interest-details-inner">
+                  Really into longevity optimization &mdash; can talk about this for hours &middot; Chronic WHOOP user
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -452,6 +736,10 @@
         </div>
 
         <form class="contact-form fade-up" id="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="2f951522-156c-403f-95e2-7ce3b4687d6c" />
+          <input type="hidden" name="subject" value="New message from lucasawad.com" />
+          <input type="hidden" name="from_name" value="Lucas Awad Portfolio" />
+          <input type="checkbox" name="botcheck" style="display:none" />
           <div class="form-group">
             <input type="text" id="form-name" name="name" placeholder="Name" autocomplete="name" required />
           </div>

@@ -218,16 +218,68 @@ body {
   border-radius: 7px;
   color: var(--ink);
   cursor: pointer;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.12s ease;
   flex-shrink: 0;
   padding: 0;
 }
 
 .theme-toggle:hover { background: rgba(0, 0, 0, 0.08); }
+.theme-toggle:active { transform: scale(0.9); }
 
-.icon-moon { display: none; }
-html.dark-mode .icon-sun  { display: none; }
-html.dark-mode .icon-moon { display: block; }
+/* Pull cord */
+.lamp-cord {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+}
+
+@keyframes cord-pull {
+  0%   { transform: scaleY(1);    }
+  30%  { transform: scaleY(1.9);  }
+  62%  { transform: scaleY(0.82); }
+  80%  { transform: scaleY(1.12); }
+  100% { transform: scaleY(1);    }
+}
+
+.lamp-cord.pulling { animation: cord-pull 0.48s ease-out forwards; }
+
+/* Bulb glow */
+.lamp-bulb { transition: fill-opacity 0.35s ease; }
+
+html.dark-mode .theme-toggle .lamp-bulb {
+  fill-opacity: 0.85;
+  filter: drop-shadow(0 0 2.5px #FFD65A);
+}
+
+/* Lamp rays */
+.lamp-rays {
+  opacity: 0;
+  transform: scaleY(0.1);
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  transition: opacity 0.28s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html.dark-mode .theme-toggle .lamp-rays {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Sun / Moon orbit — rotates 180° around lamp centre (12,9) = (50%, 37.5%) of 24×24 viewBox */
+.lamp-orbit {
+  transform-box: view-box;
+  transform-origin: 50% 37.5%;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.dark-mode .theme-toggle .lamp-orbit { transform: rotate(180deg); }
+
+/* Sun: visible light mode, hidden dark mode */
+.lamp-sun { transition: opacity 0.22s ease; }
+html.dark-mode .theme-toggle .lamp-sun { opacity: 0; }
+
+/* Moon: hidden light mode, fades in after orbit arrives */
+.lamp-moon { opacity: 0; transition: opacity 0.22s ease 0.32s; }
+html.dark-mode .theme-toggle .lamp-moon { opacity: 1; }
 
 /* Hamburger */
 .hamburger {
@@ -732,6 +784,47 @@ html.dark-mode .icon-moon { display: block; }
   margin-top: 2px;
 }
 
+.interest-expandable {
+  padding: 0;
+  border-radius: 4px;
+  transition: background 0.12s;
+}
+
+.interest-expandable:hover { background: rgba(0, 0, 0, 0.025); }
+
+.interest-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.interest-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s var(--ease);
+}
+
+.interest-details-inner {
+  padding: 0 0 14px 0;
+  font-size: 13px;
+  color: var(--gray-text);
+  line-height: 1.7;
+}
+
+.interest-photo {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 10px;
+  margin-top: 12px;
+  object-fit: cover;
+}
+
 /* ============================================
    CONTACT (DARK)
    ============================================ */
@@ -1080,6 +1173,8 @@ html.dark-mode .resume-row:has(.toggle-btn):hover { background: #1E1E1E; }
 
 html.dark-mode .interest-list,
 html.dark-mode .interest-item { border-color: #232323; }
+
+html.dark-mode .interest-expandable:hover { background: rgba(255, 255, 255, 0.04); }
 
 html.dark-mode .skill-tag {
   background: #1E1E1E;

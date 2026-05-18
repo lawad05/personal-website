@@ -155,6 +155,21 @@ document.querySelectorAll('.resume-row').forEach(row => {
 });
 
 /* ============================================
+   EXPANDABLE INTEREST ITEMS
+   ============================================ */
+document.querySelectorAll('.interest-expandable').forEach(item => {
+  const btn     = item.querySelector('.toggle-btn');
+  const details = item.querySelector('.interest-details');
+  if (!btn || !details) return;
+
+  item.querySelector('.interest-header').addEventListener('click', () => {
+    const isOpen = details.style.maxHeight && details.style.maxHeight !== '0px';
+    details.style.maxHeight = isOpen ? '0px' : `${details.scrollHeight}px`;
+    btn.classList.toggle('open', !isOpen);
+  });
+});
+
+/* ============================================
    INTERSECTION OBSERVER — fade-up
    ============================================ */
 const fadeObserver = new IntersectionObserver(entries => {
@@ -222,16 +237,33 @@ loadProjects();
 /* ============================================
    CONTACT FORM
    ============================================ */
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = form.querySelector('.submit-btn');
-  btn.textContent = 'Sent \u2713';
+  btn.textContent = 'Sending…';
   btn.disabled    = true;
-  setTimeout(() => {
-    form.reset();
-    btn.textContent = 'Send Message';
+
+  try {
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body:    JSON.stringify(Object.fromEntries(new FormData(form))),
+    });
+    const data = await res.json();
+    if (data.success) {
+      btn.textContent = 'Sent \u2713';
+      setTimeout(() => {
+        form.reset();
+        btn.textContent = 'Send Message';
+        btn.disabled    = false;
+      }, 3000);
+    } else {
+      throw new Error(data.message || 'failed');
+    }
+  } catch {
+    btn.textContent = 'Error — try again';
     btn.disabled    = false;
-  }, 3000);
+  }
 });
 
 /* ============================================
@@ -353,6 +385,14 @@ document.addEventListener('keydown', e => {
 themeToggle.addEventListener('click', () => {
   const dark = document.documentElement.classList.toggle('dark-mode');
   localStorage.setItem('theme', dark ? 'dark' : 'light');
+
+  const cord = themeToggle.querySelector('.lamp-cord');
+  if (cord) {
+    cord.classList.remove('pulling');
+    void cord.offsetWidth; // force reflow so animation restarts
+    cord.classList.add('pulling');
+    cord.addEventListener('animationend', () => cord.classList.remove('pulling'), { once: true });
+  }
 });
 
 /* ============================================
@@ -370,8 +410,8 @@ if (canvas && ctx) {
 
   function initParticles() {
     const count = window.innerWidth <= 640 ? 40 : 80;
-    const w = canvas.width;
-    const h = canvas.height;
+    const w = cssW || heroSection.offsetWidth;
+    const h = cssH || heroSection.offsetHeight;
     particles = Array.from({ length: count }, () => {
       const x0 = Math.random() * w;
       const y0 = Math.random() * h;
@@ -386,14 +426,22 @@ if (canvas && ctx) {
     });
   }
 
+  let cssW = 0, cssH = 0;
+
   function resizeCanvas() {
-    canvas.width  = heroSection.offsetWidth;
-    canvas.height = heroSection.offsetHeight;
+    const dpr = window.devicePixelRatio || 1;
+    cssW = heroSection.offsetWidth;
+    cssH = heroSection.offsetHeight;
+    canvas.width  = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.width  = cssW + 'px';
+    canvas.style.height = cssH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     initParticles();
   }
 
   function drawFrame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, cssW, cssH);
     if (mouse.x === null) {
       requestAnimationFrame(drawFrame);
       return;
@@ -454,14 +502,14 @@ if (canvas && ctx) {
     particles.forEach(p => {
       if (p.prox <= 0) return;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${dotRgb},${p.prox * 0.65})`;
       ctx.fill();
     });
 
     // Cursor node
     ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
+    ctx.arc(mouse.x, mouse.y, 3.5, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${dotRgb},0.7)`;
     ctx.fill();
 
